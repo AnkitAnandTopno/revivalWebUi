@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Image, CircularIcon } from "../../components";
+import { Image, CircularIcon, Header } from "../../components";
 import images from "../../assets/images";
 import colors from "../../assets/colors";
 import {
@@ -12,22 +12,80 @@ import {
 } from "reactstrap";
 import FirstComponent from "./firstComponent";
 import { connect } from "react-redux";
+import { getAboutUs } from "../../modules/home/reducer";
+import OffersComponent from "./offersComponent";
+import FitnessComponent from "./fitnessComponent";
+import ScheduleComponent from "./scheduleComponents";
+import BmiComponent from "./bmiComponent";
+import FooterComponent from "../../components/footerComponent";
+import OverViewComponent from "../../components/overViewComponent";
+import SimpleIcon from "../../components/simpleIcon";
+import JoinUs from "../joinUs/joinUs";
+import sizes from "../../assets/dimension";
+import HeaderText from "../../components/headerText";
+import TestimonialComponent from "./testimonialComponent";
+import OwnerQuote from "./ownerQuote";
 
 const items = [
   {
-    section: 1
+    section: 1,
+    image: images.homeTestimonial
   },
   {
-    section: 2
+    section: 2,
+    image: images.homeTop
   },
   {
-    section: 3
+    section: 3,
+    image: images.homeBmi
   }
 ];
 class Home extends Component {
   constructor(props) {
     super(props);
-    this.state = { activeIndex: 0 };
+    this.state = {
+      activeIndex: 0,
+      lastScrollY: 0,
+      currentPage: "home",
+      isOverview: false,
+      offers: [
+        {
+          head: "Boot Camp",
+          price: "200",
+          subText: "Find this.",
+          shortDescription:
+            "Lorem ipsum kinder joy stow away we best ourselves.",
+          color: colors.colorSecondaryGradient,
+          borderColor: colors.colorSecondary,
+          image: images.offerCardImage1
+        },
+        {
+          head: "Fast Gym",
+          price: "200",
+          subText: "Find this.",
+          shortDescription:
+            "Lorem ipsum kinder joy stow away we best ourselves.",
+          color: colors.colorPrimaryGradient,
+          borderColor: colors.colorPrimary,
+          image: images.offerCardImage2
+        },
+        {
+          head: "Gym Wym",
+          price: "200",
+          subText: "Find this.",
+          shortDescription:
+            "Lorem ipsum kinder joy stow away we best ourselves.",
+          color: colors.colorComplementaryGradient,
+          borderColor: colors.colorComplementary,
+          image: images.offerCardImage3
+        }
+      ],
+      gymBranches: [
+        { name: "Zest Studio 1", slug: "zest1" },
+
+        { name: "Zest Studio 2", slug: "zest2" }
+      ]
+    };
     this.next = this.next.bind(this);
     this.previous = this.previous.bind(this);
     this.goToIndex = this.goToIndex.bind(this);
@@ -41,6 +99,10 @@ class Home extends Component {
 
   onExited() {
     this.animating = false;
+  }
+
+  updateJoinUs(isVisible) {
+    this.setState({ isEnquiryForm: isVisible });
   }
 
   next() {
@@ -65,177 +127,153 @@ class Home extends Component {
     if (this.animating) return;
     this.setState({ activeIndex: newIndex });
   }
+  setOverviewVisible(visible, selected, index) {
+    selected["index"] = index;
+    this.setState({ isOverview: visible, selectedOffer: selected });
+  }
+  componentDidMount() {
+    window.scrollTo(0, 0);
+    window.addEventListener("scroll", this.handleScroll);
+  }
+  handleScroll = event => {
+    let lastScrollY = window.scrollY;
+    this.setState({
+      lastScrollY
+    });
+  };
+  renderOfferFull() {
+    return (
+      <OverViewComponent onClick={() => {}}>
+        <div
+          style={{
+            backgroundColor: "rgba(0,0,0,0.95)",
+            borderBottom: "4px double " + this.state.selectedOffer.borderColor,
+            borderTop: "8px solid " + this.state.selectedOffer.borderColor,
+            color: "#fff"
+          }}
+        >
+          <div
+            style={{
+              flexDirection: "row",
+              display: "flex"
+            }}
+          >
+            {sizes.deviceHeight < sizes.deviceWidth ? (
+              <div>
+                <Image
+                  source={this.state.selectedOffer.image}
+                  style={{ height: "100%" }}
+                />
+              </div>
+            ) : null}
+            <div
+              style={{
+                padding: 10
+              }}
+            >
+              <Row>
+                <Col style={{ paddingTop: "10%" }}>
+                  <HeaderText>{this.state.selectedOffer.head}</HeaderText>
+                </Col>
+                <Col
+                  onClick={() => {
+                    this.setState({ isOverview: false });
+                  }}
+                >
+                  <span className="float-right">
+                    <SimpleIcon iconName="mdi-close" iconColor="white" />
+                  </span>
+                </Col>
+              </Row>
+              <br />
+              <br />
+              <h4> Offer Price @{this.state.selectedOffer.price} only</h4>
+              <br />
+              <p>{this.state.selectedOffer.shortDescription}</p>
+            </div>
+          </div>
+        </div>
+      </OverViewComponent>
+    );
+  }
+  renderForm() {
+    return (
+      <OverViewComponent onClick={() => {}}>
+        <div
+          style={{
+            backgroundColor: colors.colorPrimary,
+            borderRadius: "15px 10px"
+          }}
+        >
+          <div style={{ display: "flex", flexDirection: "row-reverse" }}>
+            <div
+              onClick={() => {
+                this.setState({ isEnquiryForm: false });
+              }}
+            >
+              <SimpleIcon iconName="mdi-close" iconColor="black" />
+            </div>
+          </div>
+          <JoinUs />
+        </div>
+      </OverViewComponent>
+    );
+  }
+
   render() {
     const slides = items.map(item => {
       return (
-        <CarouselItem
-          onExiting={this.onExiting}
-          onExited={this.onExited}
-          key={item.section}
-        >
-          <Container>
-            <Row style={{ flex: 1, justifyContent: "center" }}>
-              <Col xs="auto">
-                <div
-                  style={{
-                    width: 150,
-                    height: 150,
-                    backgroundColor: colors.colorPrimary
-                  }}
-                />
-              </Col>
-              <Col xs="auto">
-                <div
-                  style={{
-                    width: 150,
-                    height: 150,
-                    backgroundColor: colors.colorPrimary
-                  }}
-                />
-              </Col>
-              <Col xs="auto">
-                <div
-                  style={{
-                    width: 150,
-                    height: 150,
-                    backgroundColor: colors.colorPrimary
-                  }}
-                />
-              </Col>
-            </Row>
-          </Container>
+        <CarouselItem onExiting={this.onExiting} onExited={this.onExited}>
+          <div
+            style={{
+              backgroundImage: `url(${item.image})`,
+              backgroundSize: "cover",
+              backgroundRepeat: "no-repeat",
+              backgroundPosition: "80% 50%",
+              height: sizes.deviceHeight,
+              width: sizes.deviceWidth
+            }}
+          />
         </CarouselItem>
       );
     });
+    const carousel = () => (
+      <Carousel
+        activeIndex={this.state.activeIndex}
+        next={this.next}
+        previous={this.previous}
+        ride="carousel"
+      >
+        {slides}
+      </Carousel>
+    );
     return (
-      <div>
-        <FirstComponent />
-        <div className="aboutUs" style={{ padding: 60 }}>
-          <Container>
-            <Row>
-              <Col>
-                <h3 style={{ color: colors.colorTextGrey }}>Abua Ho Dukan</h3>
-                <h4 style={{ color: colors.colorPrimary }}>स्वरोजगार की ओर</h4>
-                <p
-                  style={{
-                    wordWrap: "break-word",
-                    color: colors.colorTextGrey
-                  }}
-                >
-                  {this.props.aboutUs}
-                </p>
-              </Col>
-              <Col>
-                <Image source={images.person1} style={{ width: 400 }} />
-              </Col>
-            </Row>
-          </Container>
-        </div>
-        <div style={{ width: "100%" }}>
-          <h4 style={{ textAlign: "center", color: colors.colorTextGrey }}>
-            Popular Shops
-          </h4>
-        </div>
-        <div style={{ padding: 60, backgroundColor: "rgba(43,182,15,0.5)" }}>
-          <Carousel
-            activeIndex={this.state.activeIndex}
-            next={this.next}
-            previous={this.previous}
-          >
-            {slides}
-            <CarouselControl
-              direction="prev"
-              directionText="Previous"
-              onClickHandler={this.previous}
-              color={colors.colorPrimary}
-              style={{
-                backgroundColor: colors.colorPrimary
-              }}
-            />
-            <CarouselControl
-              direction="next"
-              directionText="Next"
-              onClickHandler={this.next}
-              cssModule={{ backgroundColor: colors.colorPrimary }}
-            />
-          </Carousel>
-        </div>
-        <div style={{ padding: 150 }}>
-          <Container>
-            <Row>
-              <Col>
-                <div
-                  style={{
-                    flex: 1,
-                    justifyContent: "center",
-                    alignItems: "center"
-                  }}
-                >
-                  <Image source={images.person2} style={{ width: 200 }} />
-                </div>
-              </Col>
-              <Col>
-                <div
-                  style={{
-                    textAlign: "right",
-                    color: colors.colorTextGrey,
-                    justifyItem: "center"
-                  }}
-                >
-                  <h4>CONTACT US</h4>
-                  <h6>Phone Number</h6>
-                  <p style={{ color: colors.colorPrimary }}>9955969767</p>
-                  <p style={{ color: colors.colorPrimary }}>99559697xx</p>
-                  <h6>E-mail Address</h6>
-                  <p style={{ color: colors.colorPrimary }}>
-                    support@abuahodukan.com
-                  </p>
-                  <h6>Social Media</h6>
-                  <Container>
-                    <Row>
-                      <Col />
-                      <Col>
-                        <Container>
-                          <Row>
-                            <Col xs="auto" style={{ padding: 5 }}>
-                              <CircularIcon
-                                iconName="mdi-facebook"
-                                iconSize={20}
-                                iconBackgroundColor={colors.colorPrimary}
-                              />
-                            </Col>
-                            <Col xs="auto" style={{ padding: 5 }}>
-                              <CircularIcon
-                                iconName="mdi-twitter"
-                                iconSize={20}
-                                iconBackgroundColor={colors.colorPrimary}
-                              />
-                            </Col>
-                            <Col xs="auto" style={{ padding: 5 }}>
-                              <CircularIcon
-                                iconName="mdi-google-plus"
-                                iconSize={20}
-                                iconBackgroundColor={colors.colorPrimary}
-                              />
-                            </Col>
-                          </Row>
-                        </Container>
-                      </Col>
-                    </Row>
-                  </Container>
-                </div>
-              </Col>
-            </Row>
-          </Container>
-        </div>
-        <div style={{ width: "100%" }}>
-          <h5 style={{ textAlign: "center" }}>
-            Developed By{" "}
-            <span style={{ color: colors.colorPrimary }}>
-              Ankit Anand Topno
-            </span>
-          </h5>
-        </div>
+      <div style={{ overflowX: "hidden" }}>
+        <Header
+          currentPage="home"
+          lastScrollY={this.state.lastScrollY}
+          isHome={true}
+          updateJoinUs={isVisible => this.updateJoinUs(isVisible)}
+        />
+        {this.state.isEnquiryForm ? this.renderForm() : null}
+        {this.state.isOverview ? this.renderOfferFull() : null}
+        <FirstComponent
+          carousel={carousel}
+          joinUsButton={() => {
+            this.setState({ isEnquiryForm: true });
+          }}
+        />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <TestimonialComponent />
+        <FooterComponent gymBranches={this.state.gymBranches} />
       </div>
     );
   }
@@ -243,7 +281,13 @@ class Home extends Component {
 
 const mapStateToProps = state => {
   return {
-    aboutUs: state.home.aboutUs
+    aboutUs: getAboutUs(state)
   };
 };
-export default connect(mapStateToProps)(Home);
+const mapDispatchToProps = dispatch => {
+  return {};
+};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Home);

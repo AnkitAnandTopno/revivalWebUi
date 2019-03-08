@@ -3,43 +3,70 @@ import { Image } from "../../components";
 import images from "../../assets/images";
 import { Container, Row, Col, Button, Input, InputGroup } from "reactstrap";
 import colors from "../../assets/colors";
+import sizes from "../../assets/dimension";
+import ButtonSolid from "../../components/buttons/buttonSolid";
+import ButtonStroke from "../../components/buttons/buttonStroke";
 const FirstComponent = props => {
   return (
-    <div style={{ width: "100%" }}>
-      <Container
+    <div
+      style={{
+        flex: 1,
+        height: sizes.deviceHeight,
+        display: "flex",
+        alignItems: "center"
+      }}
+    >
+      <div
         style={{
+          width: 270,
           position: "absolute",
-          zIndex: 1000,
-          width: "100%"
+          margin: 80 * sizes.screenSizeFactor,
+          zIndex: 1000
         }}
       >
-        <Row>
-          <Col />
-          <Col xs="5">
-            <div
-              style={{
-                backgroundColor: "rgba(43, 182, 115, 0.5)",
-                width: "100%",
-                padding: 20,
-                paddingTop: 100
-              }}
-            >
-              <h2 style={{ color: colors.colorWhite, textAlign: "end" }}>
-                Abua Ho Dukan
-              </h2>
-              <InputGroup>
-                <Input
-                  name="search"
-                  id="search"
-                  placeholder="Search Services"
-                />
-                <Button color={colors.colorPrimary}>search</Button>
-              </InputGroup>
-            </div>
-          </Col>
-        </Row>
-      </Container>
-      <Image source={images.map} style={{ width: "100%" }} />
+        <h1
+          style={{
+            fontWeight: "bold",
+            color: "white",
+            fontSize: 77,
+            textAlign: "center",
+            fontFamily: "Allura"
+          }}
+        >
+          Revival Songs
+        </h1>
+        <p
+          style={{
+            color: "white",
+            textAlign: "center",
+            letterSpacing: 2,
+            fontSize: 15
+          }}
+        >
+          <b>Psalm 69:30</b>
+          <br />I will praise the name of God with song And magnify Him with
+          thanksgiving.
+        </p>
+        <div style={{ flexDirection: "row", display: "flex" }}>
+          <div
+            style={{ flex: 1, padding: 15 }}
+            onClick={() => {
+              props.joinUsButton();
+            }}
+          >
+            <ButtonSolid fontSize={12}>Join now</ButtonSolid>
+          </div>
+          <div
+            style={{ flex: 1, padding: 15 }}
+            onClick={() => {
+              props.joinUsButton();
+            }}
+          >
+            <ButtonStroke fontSize={12}>Book A Trial</ButtonStroke>
+          </div>
+        </div>
+      </div>
+      <div style={{ height: "100%" }}>{props.carousel()}</div>
     </div>
   );
 };
