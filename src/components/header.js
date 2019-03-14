@@ -128,12 +128,16 @@ class Header extends Component {
       <div
         style={{
           paddingTop: 10,
+          paddingBottom: 10,
           width: sizes.screenWidth,
           position: "fixed",
           zIndex: 10000,
           display: "flex",
           alignItems: "flexEnd",
-          background: colors.colorHeaderGradient
+          background:
+            this.props.lastScrollY >= sizes.deviceHeight || !this.props.isHome
+              ? "#333"
+              : colors.colorHeaderGradient
         }}
       >
         {this.state.renderForm ? this.renderForm() : null}

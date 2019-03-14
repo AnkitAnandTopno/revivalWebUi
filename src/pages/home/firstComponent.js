@@ -48,21 +48,8 @@ const FirstComponent = props => {
           thanksgiving.
         </p>
         <div style={{ flexDirection: "row", display: "flex" }}>
-          <div
-            style={{ flex: 1, padding: 15 }}
-            onClick={() => {
-              props.joinUsButton();
-            }}
-          >
-            <ButtonSolid fontSize={12}>Join now</ButtonSolid>
-          </div>
-          <div
-            style={{ flex: 1, padding: 15 }}
-            onClick={() => {
-              props.joinUsButton();
-            }}
-          >
-            <ButtonStroke fontSize={12}>Book A Trial</ButtonStroke>
+          <div style={{ flex: 1, padding: 15 }} onClick={() => {}}>
+            <ButtonSolid fontSize={12}>Get Your Copy</ButtonSolid>
           </div>
         </div>
       </div>

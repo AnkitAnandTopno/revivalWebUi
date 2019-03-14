@@ -268,10 +268,6 @@ class Home extends Component {
         <br />
         <br />
         <br />
-        <br />
-        <br />
-        <br />
-        <br />
         <TestimonialComponent />
         <FooterComponent gymBranches={this.state.gymBranches} />
       </div>

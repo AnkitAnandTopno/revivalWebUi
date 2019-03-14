@@ -81,12 +81,9 @@ const FooterComponent = props => {
                 <span style={{ fontSize: 22 }}> Visit Us</span>
                 <div className="text-left" style={{ fontSize: 15 }}>
                   <br />
-                  <p>
-                    {" "}
-                    #44, 19th Main, Sector 6 HSR Layout, Bengaluru - 560001
-                  </p>
-                  <p>+91 9805795797 </p>
-                  <p> care@zest.com </p>
+                  <p> This is an address.</p>
+                  <p>+91 9955969767 </p>
+                  <p> support@revivalsongs.org </p>
                 </div>
               </Col>
             </Row>

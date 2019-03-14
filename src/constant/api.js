@@ -15,8 +15,8 @@ const authApi = {
   }
 };
 const songApi = {
-  update: {
-    type: GET_REQUEST,
+  getUpdate: {
+    type: POST_REQUEST,
     path: `${SONGS}/updated`
   }
 };
