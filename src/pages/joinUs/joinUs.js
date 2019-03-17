@@ -29,6 +29,8 @@ import Cookies from "universal-cookie";
 import { sendRequest } from "../../util/util";
 import { authApi } from "../../constant/api";
 import { setAccessToken, getAccessToken } from "../../modules/auth/reducer";
+import { withRouter } from "react-router-dom";
+import { setSongs } from "../../modules/songs/reducer";
 
 const cookies = new Cookies();
 
@@ -65,7 +67,8 @@ class JoinUs extends Component {
           placeholder: "Password",
           type: "password"
         }
-      ]
+      ],
+      isLoader: false
     };
   }
   submit = () => {
@@ -88,19 +91,26 @@ class JoinUs extends Component {
     }
     if (toSubmit) {
       const thenFn = result => {
+        this.setState({ isLoader: false });
         if (result.data) {
+          console.log(result);
           this.props.setAccessToken({
             accessToken: result.data.accessToken || ""
+          });
+          this.props.setSongList({
+            songs: result.data.songList.songs || []
           });
           cookies.set("username", result.data.username || "");
           cookies.set("accessToken", result.data.accessToken || "");
 
-          window.location.reload();
+          this.props.history.push("/songList");
         }
       };
       const errorFn = () => {
+        this.setState({ isLoader: false });
         alert("auth error");
       };
+      this.setState({ isLoader: true });
       sendRequest(authApi.login, {
         ...submitValues,
         success: { fn: thenFn },
@@ -125,8 +135,8 @@ class JoinUs extends Component {
           <HeaderText>Log in</HeaderText>
           <br />
           <br />
-          {this.props.accessToken != "" ? (
-            <div>{this.props.accessToken}</div>
+          {this.state.isLoader || this.props.accessToken != "" ? (
+            <div>Logging In...</div>
           ) : (
             <div
               style={{
@@ -175,10 +185,13 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
   return {
-    setAccessToken: payload => dispatch(setAccessToken(payload))
+    setAccessToken: payload => dispatch(setAccessToken(payload)),
+    setSongList: payload => dispatch(setSongs(payload))
   };
 };
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(JoinUs);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(JoinUs)
+);

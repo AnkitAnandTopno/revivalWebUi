@@ -32,17 +32,10 @@ class Header extends Component {
           isVisible: true
         },
         {
-          name: "About Us",
-          slug: "aboutUs",
+          name: "Admin",
+          slug: "songList",
           type: "nav",
-          path: "/aboutUs",
-          isVisible: true
-        },
-        {
-          name: "Add Songs",
-          slug: "addSongs",
-          type: "nav",
-          path: "/addSongs",
+          path: "/songList",
           isVisible: cookies.get("accessToken") ? true : false
         },
         {
@@ -180,7 +173,8 @@ class Header extends Component {
                 flexDirection: "row",
                 display: "flex",
                 height: "100%",
-                alignItems: "center"
+                alignItems: "center",
+                justifyContent: "flex-end"
               }}
             >
               {_.map(this.state.navList, item => {
@@ -189,7 +183,7 @@ class Header extends Component {
                     return (
                       <div
                         style={{
-                          flex: 1
+                          width: 150
                         }}
                       >
                         <NavLink
@@ -207,7 +201,13 @@ class Header extends Component {
                     );
                   } else if (item.type === "actionButton") {
                     return (
-                      <div onClick={() => item.action()}>
+                      <div
+                        style={{
+                          width: 150,
+                          padding: 10
+                        }}
+                        onClick={() => item.action()}
+                      >
                         <ButtonStroke fontSize={15} style={{ flex: 1 }}>
                           {item.name}
                         </ButtonStroke>
@@ -215,7 +215,7 @@ class Header extends Component {
                     );
                   } else {
                     return (
-                      <div style={{ flex: 1 }}>
+                      <div style={{ width: 150 }}>
                         <a
                           href={item.path}
                           style={{

@@ -23,15 +23,15 @@ class AddSongList extends Component {
   }
   render() {
     return (
-      <div>
+      <div style={{ width: "100%" }}>
         {_.map(this.props.songList, (item, index) => (
           <SongCard
+            hindi={item.hindi}
             songName={item.songName}
             newNo={item.newNum}
             oldNo={item.oldNum}
-            onDelete={() => this.props.onDelete(item.newNum, item.oldNum)}
+            onDelete={() => this.props.onDelete(index)}
             onClick={() => {
-              console.log(item.lyrics);
               this.setState({ activeSong: item });
               this.toggleModal();
             }}

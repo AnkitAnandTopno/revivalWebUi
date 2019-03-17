@@ -11,8 +11,11 @@ import { songApi } from "../../constant/api";
 import { AddSongForm, AddSongList } from "./addSongComponents";
 import _ from "lodash";
 import { getSongs, setSongs, addSongs } from "../../modules/songs/reducer";
+import { NavLink, withRouter } from "react-router-dom";
+import { SongListComponent } from "./songListComponents";
+import ButtonSolid from "../../components/buttons/buttonSolid";
 
-class AddSong extends Component {
+class SongList extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,30 +25,17 @@ class AddSong extends Component {
     };
   }
   onDelete(songIndex) {
-    let newSongList = _.cloneDeep(this.state.songList);
     let newSongListMain = _.cloneDeep(this.props.songs);
-    newSongList = _.remove(newSongList, (item, index) => {
-      return songIndex === index;
-    });
     newSongListMain = _.remove(newSongListMain, (item, index) => {
-      return songIndex === index;
+      return songIndex !== index;
     });
-    this.setState({ songList: newSongList });
-    this.props.addSongs({ songs: newSongListMain });
-  }
-  addSong(newSong) {
-    let newSongList = _.cloneDeep(this.state.songList);
-    let newSongListMain = _.cloneDeep(this.props.songs);
-    newSongList.push(newSong);
-    newSongListMain.push(newSong);
-    this.setState({ songList: newSongList });
-
     this.props.addSongs({ songs: newSongListMain });
   }
   componentDidMount() {
     window.scrollTo(0, 0);
   }
   render() {
+    console.log(this.props.songs);
     return (
       <div style={{ overflowX: "hidden" }}>
         <AdminHeader />
@@ -61,8 +51,12 @@ class AddSong extends Component {
         >
           <div style={{ flex: 1 }}>
             <HeaderText>
-              <b>Add Songs</b>
+              <b>Song List</b>
             </HeaderText>
+            <br />
+            <NavLink to={"/addSongs"}>
+              <ButtonSolid fontSize={15}>Add Songs</ButtonSolid>
+            </NavLink>
           </div>
           <div
             style={{
@@ -70,37 +64,25 @@ class AddSong extends Component {
               display: "flex"
             }}
           >
-            <div
-              style={{
-                flex: 1.5
-              }}
-            >
-              <AddSongForm addSong={newSong => this.addSong(newSong)} />
-            </div>
-            <div
-              style={{
-                flex: 1,
-                overflowY: "auto",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                borderLeftWidth: 0.5,
-                borderLeftColor: "#ddd",
-                borderLeftStyle: "solid"
-              }}
-            >
-              <h4>New Songs Added</h4>
-              {this.state.songList.length > 0 ? (
-                <AddSongList
-                  songList={this.state.songList}
-                  onDelete={(newNum, oldNum) => {
-                    this.onDelete(newNum, oldNum);
+            {this.props.songs && this.props.songs.length > 0 ? (
+              <SongListComponent
+                onDelete={songIndex => {
+                  this.onDelete(songIndex);
+                }}
+              />
+            ) : (
+              <div>
+                <span style={{ color: "#999" }}>No Song Added Yet</span>
+                <NavLink
+                  to={"/addSongs"}
+                  style={{
+                    color: "blue"
                   }}
-                />
-              ) : (
-                <span style={{ color: "#999" }}>No New Song Added Yet</span>
-              )}
-            </div>
+                >
+                  <p>click here add songs</p>
+                </NavLink>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -121,4 +103,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(AddSong);
+)(SongList);

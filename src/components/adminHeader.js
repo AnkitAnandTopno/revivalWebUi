@@ -12,32 +12,87 @@ import JoinUs from "../pages/joinUs/joinUs";
 import OverViewComponent from "../components/overViewComponent";
 import Cookies from "universal-cookie";
 import { sendRequest } from "../util/util";
-import { authApi } from "../constant/api";
+import { authApi, songApi } from "../constant/api";
 import { connect } from "react-redux";
 import { setAccessToken } from "../modules/auth/reducer";
 import { Modal } from "reactstrap";
+import { getIsUnsaved, getSongs, saveUnsaved } from "../modules/songs/reducer";
+import ButtonSolid from "./buttons/buttonSolid";
 
 const cookies = new Cookies();
 class AdminHeader extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      modalMessage: "",
       isMenuClose: true,
+      navList: [],
+      currentPage: this.props.currentPage,
+      classAnimate: "animated tada"
+    };
+  }
+  saveUnsaved() {
+    const thenFn = result => {
+      this.setState({ isModalVisible: false });
+      this.props.saveUnsaved();
+      alert("Song list saved");
+    };
+    const errorFn = () => {
+      this.setState({ isModalVisible: false });
+      alert("Save failed");
+    };
+    this.setState({ isModalVisible: true, modalMessage: "Saving" });
+    sendRequest(songApi.updateSongList, {
+      songs: this.props.songs,
+      success: { fn: thenFn },
+      error: { fn: errorFn }
+    });
+  }
+  changeState() {
+    this.setState({ renderForm: true });
+  }
+  logOut() {
+    const thenFn = result => {
+      this.props.setAccessToken({
+        accessToken: ""
+      });
+
+      cookies.remove("username");
+      cookies.remove("accessToken");
+
+      setTimeout(() => {
+        this.setState({ isModalVisible: false });
+        this.props.history.push("/");
+      }, 5000);
+    };
+    const errorFn = () => {
+      this.setState({ isModalVisible: false });
+      alert("Log out failed");
+    };
+    this.setState({ isModalVisible: true, modalMessage: "Logging Out" });
+    sendRequest(authApi.logOut, {
+      username: cookies.get("username"),
+      accessToken: cookies.get("accessToken"),
+      success: { fn: thenFn },
+      error: { fn: errorFn }
+    });
+  }
+  handleUnload(e) {
+    if (this.props.isUnsaved) {
+      return "wait";
+    } else {
+    }
+  }
+  componentDidMount() {
+    this.setState({
       navList: [
         { name: "Home", slug: "home", type: "nav", path: "/", isVisible: true },
         {
-          name: "Gallery",
-          slug: "gallery",
+          name: "Song List",
+          slug: "songList",
           type: "nav",
-          path: "/gallery",
-          isVisible: true
-        },
-        {
-          name: "About Us",
-          slug: "aboutUs",
-          type: "nav",
-          path: "/aboutUs",
-          isVisible: true
+          path: "/songList",
+          isVisible: cookies.get("accessToken") ? true : false
         },
         {
           name: "Add Songs",
@@ -66,43 +121,9 @@ class AdminHeader extends Component {
           },
           isVisible: cookies.get("accessToken") ? true : false
         }
-      ],
-      currentPage: this.props.currentPage,
-      classAnimate: "animated tada"
-    };
-  }
-  changeState() {
-    this.setState({ renderForm: true });
-  }
-  logOut() {
-    const thenFn = result => {
-      console.log("work");
-      this.props.setAccessToken({
-        accessToken: ""
-      });
-
-      cookies.remove("username");
-      cookies.remove("accessToken");
-
-      setTimeout(() => {
-        this.setState({ isModalVisible: false });
-        this.props.history.push("/");
-      }, 5000);
-    };
-    const errorFn = () => {
-      this.setState({ isModalVisible: false });
-      alert("Log out failed");
-    };
-    this.setState({ isModalVisible: true });
-    sendRequest(authApi.logOut, {
-      username: cookies.get("username"),
-      accessToken: cookies.get("accessToken"),
-      success: { fn: thenFn },
-      error: { fn: errorFn }
+      ]
     });
-  }
-
-  componentDidMount() {
+    window.onbeforeunload = e => this.handleUnload(e);
     if (sizes.deviceHeight < sizes.deviceWidth) {
       this.setState({ isMenuClose: false });
     }
@@ -144,7 +165,7 @@ class AdminHeader extends Component {
           className={"testModal"}
           centered={true}
         >
-          <p>Logging out...</p>
+          <p>{this.state.modalMessage}...</p>
         </Modal>
         <div
           style={{
@@ -206,6 +227,16 @@ class AdminHeader extends Component {
                   alignItems: "center"
                 }}
               >
+                {this.props.isUnsaved ? (
+                  <div
+                    style={{ marginRight: 10 }}
+                    onClick={() => this.saveUnsaved()}
+                  >
+                    <ButtonSolid fontSize={15} style={{ flex: 1 }}>
+                      Save
+                    </ButtonSolid>
+                  </div>
+                ) : null}
                 {_.map(this.state.navList, item => {
                   if (item.isVisible) {
                     if (item.type === "nav") {
@@ -286,8 +317,19 @@ class AdminHeader extends Component {
                   <SimpleIcon iconName="mdi-close" iconColor="white" />
                 </div>
               </div>
+
               <div style={{ width: "100%" }}>
-                {_.map(this.state.navList, item => {
+                {!this.props.isUnsaved ? (
+                  <div
+                    style={{ marginRight: 10 }}
+                    onClick={() => this.saveUnsaved()}
+                  >
+                    <ButtonSolid fontSize={15} style={{ flex: 1 }}>
+                      Save
+                    </ButtonSolid>
+                  </div>
+                ) : null}
+                {_.map(this.state.navList, (item, index) => {
                   if (item.isVisible) {
                     if (item.type === "nav") {
                       return (
@@ -316,7 +358,7 @@ class AdminHeader extends Component {
                       return (
                         <div
                           onClick={() => {
-                            item.action();
+                            item.action(index);
                           }}
                           style={{
                             flex: 1,
@@ -366,16 +408,20 @@ class AdminHeader extends Component {
 }
 
 const mapStateToProps = state => {
-  return {};
+  return {
+    isUnsaved: getIsUnsaved(state),
+    songs: getSongs(state)
+  };
 };
 const mapDispatchToProps = dispatch => {
   return {
-    setAccessToken: payload => dispatch(setAccessToken(payload))
+    setAccessToken: payload => dispatch(setAccessToken(payload)),
+    saveUnsaved: payload => dispatch(saveUnsaved(payload))
   };
 };
 export default withRouter(
   connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
   )(AdminHeader)
 );

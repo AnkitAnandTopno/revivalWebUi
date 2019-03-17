@@ -18,6 +18,10 @@ const songApi = {
   getUpdate: {
     type: POST_REQUEST,
     path: `${SONGS}/updated`
+  },
+  updateSongList: {
+    type: POST_REQUEST,
+    path: `${SONGS}/update`
   }
 };
 export { authApi, songApi };

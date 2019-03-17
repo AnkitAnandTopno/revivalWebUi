@@ -24,12 +24,13 @@ const cookies = new Cookies();
 class AddSongForm extends Component {
   constructor(props) {
     super(props);
+    let { hindi, newNum, oldNum, songName, lyrics } = this.props;
     this.state = {
-      hindi: false,
-      newNum: undefined,
-      oldNum: undefined,
-      songName: undefined,
-      lyrics: undefined
+      hindi,
+      newNum,
+      oldNum,
+      songName,
+      lyrics
     };
   }
   submit = () => {
@@ -39,14 +40,12 @@ class AddSongForm extends Component {
       ? true
       : false;
     if (!isEmpty) {
-      this.props.addSong({ ...this.state });
-
+      this.props.updateSong({ ...this.state });
       checkState = _.mapValues(checkState, o => {
         return "";
       });
       this.setState(_.assign({}, this.state, checkState));
     } else {
-      console.log(this.state);
       alert("No value should be left empty.");
     }
   };
@@ -68,12 +67,24 @@ class AddSongForm extends Component {
           >
             <FormGroup>
               <Label check>
-                <Input type="radio" name="language" value="english" /> English
+                <Input
+                  type="radio"
+                  name="language"
+                  value="english"
+                  checked={!this.state.hindi}
+                />{" "}
+                English
               </Label>
             </FormGroup>
             <FormGroup>
               <Label check>
-                <Input type="radio" name="language" value="hindi" /> Hindi
+                <Input
+                  type="radio"
+                  name="language"
+                  value="hindi"
+                  checked={this.state.hindi}
+                />{" "}
+                Hindi
               </Label>
             </FormGroup>
           </FormGroup>
@@ -111,7 +122,6 @@ class AddSongForm extends Component {
             <Input
               type="text"
               name="songName"
-              placeholder="Song Name"
               value={this.state.songName}
               style={{ fontFamily: this.state.hindi ? "hindi" : "arial" }}
               onChange={e => {
@@ -140,7 +150,7 @@ class AddSongForm extends Component {
           </FormGroup>
 
           <div onClick={() => this.submit()}>
-            <ButtonSolid fontSize={18}>Add Song</ButtonSolid>
+            <ButtonSolid fontSize={18}>Update Song</ButtonSolid>
           </div>
         </Form>
       </div>

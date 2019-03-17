@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import colors from "../assets/colors";
 import Icon from "./icon";
+import { convert_to_unicode } from "../util/stringUtil";
 
-const SongCard = ({ songName, newNo, oldNo, isHindi, onDelete, onClick }) => {
+const SongCard = ({ songName, newNo, oldNo, hindi, onDelete, onClick }) => {
   return (
     <div
       style={{
-        margin: 10,
+        margin: 5,
         backgroundColor: colors.colorPrimary,
         display: "flex",
         borderRadius: 10,
@@ -19,12 +20,15 @@ const SongCard = ({ songName, newNo, oldNo, isHindi, onDelete, onClick }) => {
           padding: 10,
           flex: 6,
           display: "flex",
-          alignItems: "center"
+          alignItems: "center",
+          height: 50
         }}
         onClick={() => onClick()}
       >
-        <p style={{ paddingRight: 10 }}>{newNo}. </p>
-        <p>{songName}</p>
+        <span style={{ paddingRight: 10 }}>{newNo}. </span>
+        <span style={{ textOverflow: "ellipsis", wordWrap: "break-word" }}>
+          {hindi ? convert_to_unicode(songName) : songName}
+        </span>
       </div>
       <div
         style={{

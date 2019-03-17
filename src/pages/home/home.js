@@ -263,12 +263,6 @@ class Home extends Component {
             this.setState({ isEnquiryForm: true });
           }}
         />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <TestimonialComponent />
         <FooterComponent gymBranches={this.state.gymBranches} />
       </div>
     );

@@ -15,6 +15,7 @@ class ButtonSolid extends React.Component {
           display: "flex",
           padding: 10
         }}
+        onClick={() => this.props.onClick()}
       >
         <span
           style={{
@@ -31,6 +32,7 @@ class ButtonSolid extends React.Component {
 }
 
 ButtonSolid.defaultProps = {
-  fontSize: 20
+  fontSize: 20,
+  onClick: () => {}
 };
 export default ButtonSolid;

@@ -66,7 +66,7 @@ const FooterComponent = props => {
           <Col>
             <Row style={{ paddingTop: "40px", margin: "2px auto" }}>
               <Col>
-                <span style={{ fontSize: 22 }}> Recent Posts</span>
+                <span style={{ fontSize: 22 }}>Links</span>
                 <br />
                 <br />
                 <div className="text-left" style={{ fontSize: 15 }}>
