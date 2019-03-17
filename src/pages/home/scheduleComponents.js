@@ -22,7 +22,7 @@ class ScheduleComponent extends Component {
     super(props);
     this.state = {
       modal: false,
-      activeItem : "",
+      activeItem: "",
       days: [
         {
           name: "Monday",
@@ -33,28 +33,28 @@ class ScheduleComponent extends Component {
               color: colors.colorPrimaryGradient,
               timing: "07:30 am - 08:30",
               description: "Some description about Zumba ",
-              img : images.zumba
+              img: images.zumba
             },
             {
               name: "PILATES",
               color: colors.colorSecondaryGradient,
               timing: "07:30 am - 08:30",
               description: "Some description about Zumba ",
-              img : images.pilates,
+              img: images.pilates
             },
             {
               name: "BOLLY AEROBICS",
               color: colors.colorComplementaryGradient,
               timing: "07:30 am - 08:30",
               description: "Some description about Zumba ",
-              img : images.bolly,
+              img: images.bolly
             },
             {
               name: "TRX",
               color: colors.colorPrimaryGradient,
               timing: "07:30 am - 08:30",
               description: "Some description about Zumba ",
-              img : images.trx,
+              img: images.trx
             }
           ]
         },
@@ -67,28 +67,28 @@ class ScheduleComponent extends Component {
               color: colors.colorPrimaryGradient,
               timing: "12:30 am - 08:30 pm",
               description: "Some description about Zumba ",
-              img : images.zumba,
+              img: images.zumba
             },
             {
               name: "PILATES",
               color: colors.colorSecondaryGradient,
               timing: "07:30 am - 08:30",
               description: "Some description about Zumba ",
-              img : images.pilates,
+              img: images.pilates
             },
             {
               name: "BOLLY AEROBICS",
               color: colors.colorComplementaryGradient,
               timing: "07:30 am - 08:30",
               description: "Some description about Zumba ",
-              img : images.bolly,
+              img: images.bolly
             },
             {
               name: "TRX",
               color: colors.colorPrimaryGradient,
               timing: "07:30 am - 08:30",
               description: "Some description about Zumba ",
-              img : images.trx,
+              img: images.trx
             }
           ]
         },
@@ -101,28 +101,28 @@ class ScheduleComponent extends Component {
               color: colors.colorPrimaryGradient,
               timing: "07:30 am - 08:30",
               description: "Some description about Zumba ",
-              img : images.zumba,
+              img: images.zumba
             },
             {
               name: "PILATES",
               color: colors.colorSecondaryGradient,
               timing: "07:30 am - 08:30",
               description: "Some description about Zumba ",
-              img : images.pilates,
+              img: images.pilates
             },
             {
               name: "BOLLY AEROBICS",
               color: colors.colorComplementaryGradient,
               timing: "07:30 am - 08:30",
               description: "Some description about Zumba ",
-              img : images.bolly,
+              img: images.bolly
             },
             {
               name: "TRX",
               color: colors.colorPrimaryGradient,
               timing: "07:30 am - 08:30",
               description: "Some description about Zumba ",
-              img : images.trx,
+              img: images.trx
             }
           ]
         },
@@ -135,28 +135,28 @@ class ScheduleComponent extends Component {
               color: colors.colorPrimaryGradient,
               timing: "07:30 am - 08:30",
               description: "Some description about Zumba ",
-              img : images.zumba,
+              img: images.zumba
             },
             {
               name: "PILATES",
               color: colors.colorSecondaryGradient,
               timing: "07:30 am - 08:30",
               description: "Some description about Zumba ",
-              img : images.pilates,
+              img: images.pilates
             },
             {
               name: "BOLLY AEROBICS",
               color: colors.colorComplementaryGradient,
               timing: "07:30 am - 08:30",
               description: "Some description about Zumba ",
-              img : images.bolly,
+              img: images.bolly
             },
             {
               name: "TRX",
               color: colors.colorPrimaryGradient,
               timing: "07:30 am - 08:30",
               description: "Some description about Zumba ",
-              img : images.trx,
+              img: images.trx
             }
           ]
         },
@@ -169,28 +169,28 @@ class ScheduleComponent extends Component {
               color: colors.colorPrimaryGradient,
               timing: "07:30 am - 08:30",
               description: "Some description about Zumba ",
-              img : images.zumba,
+              img: images.zumba
             },
             {
               name: "PILATES",
               color: colors.colorSecondaryGradient,
               timing: "07:30 am - 08:30",
               description: "Some description about Zumba ",
-              img : images.pilates,
+              img: images.pilates
             },
             {
               name: "BOLLY AEROBICS",
               color: colors.colorComplementaryGradient,
               timing: "07:30 am - 08:30",
               description: "Some description about Zumba ",
-              img : images.bolly,
+              img: images.bolly
             },
             {
               name: "TRX",
               color: colors.colorPrimaryGradient,
               timing: "07:30 am - 08:30",
               description: "Some description about Zumba ",
-              img : images.trx,
+              img: images.trx
             }
           ]
         },
@@ -203,28 +203,28 @@ class ScheduleComponent extends Component {
               color: colors.colorPrimaryGradient,
               timing: "07:30 am - 08:30",
               description: "Some description about Zumba ",
-              img : images.zumba,
+              img: images.zumba
             },
             {
               name: "PILATES",
               color: colors.colorSecondaryGradient,
               timing: "07:30 am - 08:30",
               description: "Some description about Zumba ",
-              img : images.pilates,
+              img: images.pilates
             },
             {
               name: "BOLLY AEROBICS",
               color: colors.colorComplementaryGradient,
               timing: "07:30 am - 08:30",
               description: "Some description about Zumba ",
-              img : images.bolly,
+              img: images.bolly
             },
             {
               name: "TRX",
               color: colors.colorPrimaryGradient,
               timing: "07:30 am - 08:30",
               description: "Some description about Zumba ",
-              img : images.trx,
+              img: images.trx
             }
           ]
         },
@@ -237,40 +237,40 @@ class ScheduleComponent extends Component {
               color: colors.colorPrimaryGradient,
               timing: "07:30 am - 08:30",
               description: "Some description about Zumba ",
-              img : images.zumba,
+              img: images.zumba
             },
             {
               name: "PILATES",
               color: colors.colorSecondaryGradient,
               timing: "07:30 am - 08:30",
               description: "Some description about Zumba ",
-              img : images.pilates,
+              img: images.pilates
             },
             {
               name: "BOLLY AEROBICS",
               color: colors.colorComplementaryGradient,
               timing: "07:30 am - 08:30",
               description: "Some description about Zumba ",
-              img : images.bolly,
+              img: images.bolly
             },
             {
               name: "TRX",
               color: colors.colorPrimaryGradient,
               timing: "07:30 am - 08:30",
               description: "Some description about Zumba ",
-              img : images.trx,
+              img: images.trx
             }
           ]
         }
       ],
       selected: 0,
-      day : "Default"
+      day: "Default"
     };
     this.toggle = this.toggle.bind(this);
   }
-  alter(items,d){
-    this.toggle(); 
-    this.setState({ activeItem : items ,day : d});
+  alter(items, d) {
+    this.toggle();
+    this.setState({ activeItem: items, day: d });
   }
   clicked(index) {
     let newState = this.state.days;
@@ -283,27 +283,50 @@ class ScheduleComponent extends Component {
       modal: !this.state.modal
     });
   }
-  renderClassModal(){
-    console.log(this.state.activeItem);
-    return(
-      <div> 
-        <Modal isOpen={this.state.modal} toggle={this.toggle} style={{ 
-          margin: "7% auto",
-          width: "800px",
-          height: "500px",
-          background: "rgba(0,0,0,0)"
-          }}>
-          <ModalHeader toggle={this.toggle} style={{background: this.state.activeItem.color, border: "none"}}></ModalHeader>
-          <ModalBody toggle={this.toggle} style={{borderBottom : "4px solid "+ this.state.activeItem.color ,}}>
-          <Container className="text-center">
-          
-            <h2 style={{borderBottom: "2px solid " + colors.colorPrimary }}>{this.state.activeItem.name} Group Class</h2>
-            <Image source={this.state.activeItem.img} style={{width: "40%"}}/><br/>
-            <p style={{ background : this.state.activeItem.color , color: "#fff"}}>Timing : {this.state.activeItem.timing }{ " on " + this.state.days[this.state.day].name }</p> 
-            <h4>{this.state.activeItem.description}{ "   " + this.state.activeItem.name}</h4> 
-        
-          </Container>
-
+  renderClassModal() {
+    return (
+      <div>
+        <Modal
+          isOpen={this.state.modal}
+          toggle={this.toggle}
+          style={{
+            margin: "7% auto",
+            width: "800px",
+            height: "500px",
+            background: "rgba(0,0,0,0)"
+          }}
+        >
+          <ModalHeader
+            toggle={this.toggle}
+            style={{ background: this.state.activeItem.color, border: "none" }}
+          />
+          <ModalBody
+            toggle={this.toggle}
+            style={{ borderBottom: "4px solid " + this.state.activeItem.color }}
+          >
+            <Container className="text-center">
+              <h2 style={{ borderBottom: "2px solid " + colors.colorPrimary }}>
+                {this.state.activeItem.name} Group Class
+              </h2>
+              <Image
+                source={this.state.activeItem.img}
+                style={{ width: "40%" }}
+              />
+              <br />
+              <p
+                style={{
+                  background: this.state.activeItem.color,
+                  color: "#fff"
+                }}
+              >
+                Timing : {this.state.activeItem.timing}
+                {" on " + this.state.days[this.state.day].name}
+              </p>
+              <h4>
+                {this.state.activeItem.description}
+                {"   " + this.state.activeItem.name}
+              </h4>
+            </Container>
           </ModalBody>
         </Modal>
       </div>
@@ -324,8 +347,7 @@ class ScheduleComponent extends Component {
           paddingTop: 100
         }}
       >
-
-      { this.state.modal ? this.renderClassModal({}) : null }
+        {this.state.modal ? this.renderClassModal({}) : null}
 
         <div style={{ alignItems: "center" }}>
           <h1 style={{ textAlign: "center" }}>
@@ -373,7 +395,7 @@ class ScheduleComponent extends Component {
           style={{ flexDirection: "row", display: "flex", flexWrap: "wrap" }}
         >
           {_.map(this.state.days[this.state.selected].sched, (items, index) => (
-            <HoverComponent >
+            <HoverComponent>
               <div
                 style={{
                   width: 150,
@@ -387,9 +409,8 @@ class ScheduleComponent extends Component {
                   alignItems: "center",
                   justifyContent: "center"
                 }}
-
-                onClick={ () => { 
-                  this.alter(items,this.state.selected)
+                onClick={() => {
+                  this.alter(items, this.state.selected);
                 }}
               >
                 <span

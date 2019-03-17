@@ -46,7 +46,6 @@ class AddSongForm extends Component {
       });
       this.setState(_.assign({}, this.state, checkState));
     } else {
-      console.log(this.state);
       alert("No value should be left empty.");
     }
   };

@@ -93,7 +93,6 @@ class JoinUs extends Component {
       const thenFn = result => {
         this.setState({ isLoader: false });
         if (result.data) {
-          console.log(result);
           this.props.setAccessToken({
             accessToken: result.data.accessToken || ""
           });

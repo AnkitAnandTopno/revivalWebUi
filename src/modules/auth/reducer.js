@@ -12,7 +12,6 @@ export const { setAccessToken } = createActions({
 const reducer = handleActions(
   {
     SET_ACCESS_TOKEN: (state, action) => {
-      console.log(action, state);
       return _.assign({}, state, action.payload);
     }
   },

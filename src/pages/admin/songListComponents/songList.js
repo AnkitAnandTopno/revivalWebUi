@@ -23,7 +23,6 @@ class SongListComponent extends Component {
   updateSong(song, songIndex) {
     let newSongListMain = _.cloneDeep(this.props.songList);
     newSongListMain[songIndex] = song;
-    console.log(newSongListMain, songIndex);
     this.props.addSongs({ songs: newSongListMain });
     this.setState({ activeSong: song });
   }

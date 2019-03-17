@@ -35,7 +35,6 @@ class SongList extends Component {
     window.scrollTo(0, 0);
   }
   render() {
-    console.log(this.props.songs);
     return (
       <div style={{ overflowX: "hidden" }}>
         <AdminHeader />

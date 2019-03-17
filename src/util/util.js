@@ -12,7 +12,6 @@ const sendRequest = (api, data) => {
 
   const param = _.omit(data, ["success", "error"]);
 
-  console.log(param);
   const params = new URLSearchParams();
   params.append("data", JSON.stringify(param || {}));
   axios({
@@ -20,7 +19,6 @@ const sendRequest = (api, data) => {
     url: urlMaker(api.path),
     data: params
   }).then(response => {
-    console.log(response);
     if (response.status == 200) {
       if (response.data && response.data.success) {
         try {

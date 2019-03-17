@@ -68,7 +68,6 @@ class Header extends Component {
   }
   logOut() {
     const thenFn = result => {
-      console.log("work");
       this.props.setAccessToken({
         accessToken: ""
       });
