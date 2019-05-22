@@ -22,6 +22,10 @@ const songApi = {
   updateSongList: {
     type: POST_REQUEST,
     path: `${SONGS}/update`
+  },
+  uploadSong: {
+    type: POST_REQUEST,
+    path: `${SONGS}/files/tutorials`
   }
 };
 export { authApi, songApi };

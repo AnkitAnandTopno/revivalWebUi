@@ -44,6 +44,7 @@ class SongListComponent extends Component {
                     songName={item.songName}
                     newNo={item.newNum}
                     oldNo={item.oldNum}
+                    isDeletable={true}
                     onDelete={() => this.props.onDelete(index)}
                     onClick={() => {
                       this.setState({ activeSong: item, activeIndex: index });
@@ -68,6 +69,7 @@ class SongListComponent extends Component {
                     songName={item.songName}
                     newNo={item.newNum}
                     oldNo={item.oldNum}
+                    isDeletable={true}
                     onDelete={() => this.props.onDelete(index)}
                     onClick={() => {
                       this.setState({ activeSong: item, activeIndex: index });

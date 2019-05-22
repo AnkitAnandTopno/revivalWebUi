@@ -23,15 +23,10 @@ class AddSong extends Component {
   }
   onDelete(songIndex) {
     let newSongList = _.cloneDeep(this.state.songList);
-    let newSongListMain = _.cloneDeep(this.props.songs);
     newSongList = _.remove(newSongList, (item, index) => {
       return songIndex === index;
     });
-    newSongListMain = _.remove(newSongListMain, (item, index) => {
-      return songIndex === index;
-    });
     this.setState({ songList: newSongList });
-    this.props.addSongs({ songs: newSongListMain });
   }
   addSong(newSong) {
     let newSongList = _.cloneDeep(this.state.songList);
@@ -93,8 +88,8 @@ class AddSong extends Component {
               {this.state.songList.length > 0 ? (
                 <AddSongList
                   songList={this.state.songList}
-                  onDelete={(newNum, oldNum) => {
-                    this.onDelete(newNum, oldNum);
+                  onDelete={index => {
+                    this.onDelete(index);
                   }}
                 />
               ) : (

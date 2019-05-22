@@ -48,9 +48,11 @@ const FirstComponent = props => {
           thanksgiving.
         </p>
         <div style={{ flexDirection: "row", display: "flex" }}>
-          <div style={{ flex: 1, padding: 15 }} onClick={() => {}}>
-            <ButtonSolid fontSize={12}>Get Your Copy</ButtonSolid>
-          </div>
+          {
+          //   <div style={{ flex: 1, padding: 15 }} onClick={() => {}}>
+          //   <ButtonSolid fontSize={12}></ButtonSolid>
+          // </div>
+        }
         </div>
       </div>
       <div style={{ height: "100%" }}>{props.carousel()}</div>
