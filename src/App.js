@@ -13,20 +13,17 @@ import SongList from "./pages/admin/songList";
 const cookies = new Cookies();
 class App extends Component {
   componentDidMount() {
-    if (cookies.get("accessToken")) {
-      const thenFn = response => {
-        this.props.setSongs({ songs: response.data.songs });
-      };
-      const errorFn = () => {
-        alert("error loading update");
-      };
-      sendRequest(songApi.getUpdate, {
-        updatekey: "FIRSTUPDATEKEY",
-        success: { fn: thenFn },
-        error: { fn: errorFn },
-        accessToken: cookies.get("accessToken")
-      });
-    }
+    const thenFn = response => {
+      this.props.setSongs({ songs: response.data.songs });
+    };
+    const errorFn = () => {
+      alert("error loading update");
+    };
+    sendRequest(songApi.getUpdate, {
+      updatekey: "FIRSTUPDATEKEY",
+      success: { fn: thenFn },
+      error: { fn: errorFn }
+    });
   }
   render() {
     return (

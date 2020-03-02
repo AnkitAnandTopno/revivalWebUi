@@ -35,24 +35,137 @@ class SongListComponent extends Component {
         <h4>Hindi</h4>
         <br />
         <div style={{ width: "100%", display: "flex", flexWrap: "wrap" }}>
-          {_.map(this.props.songList, (item, index) => (
+          {_.map(this.props.songHindi, (item, index) => (
             <div>
-              {item.hindi ? (
-                <div style={{ width: 250 }}>
-                  <SongCard
-                    hindi={item.hindi}
-                    songName={item.songName}
-                    newNo={item.newNum}
-                    oldNo={item.oldNum}
-                    isDeletable={true}
-                    onDelete={() => this.props.onDelete(index)}
-                    onClick={() => {
-                      this.setState({ activeSong: item, activeIndex: index });
-                      this.toggleModal();
-                    }}
-                  />
-                </div>
-              ) : null}
+              <div style={{ width: 250 }}>
+                <SongCard
+                  hindi={item.hindi}
+                  songName={item.songName}
+                  newNo={item.newNum}
+                  oldNo={item.oldNum}
+                  isDeletable={true}
+                  onDelete={() => this.props.onDelete(index)}
+                  onClick={() => {
+                    this.setState({ activeSong: item, activeIndex: index });
+                    this.toggleModal();
+                  }}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+        <br />
+        <h4>Sadri</h4>
+        <br />
+        <div style={{ width: "100%", display: "flex", flexWrap: "wrap" }}>
+          {_.map(this.props.songSadri, (item, index) => (
+            <div>
+              <div style={{ width: 250 }}>
+                <SongCard
+                  hindi={item.hindi}
+                  songName={item.songName}
+                  newNo={item.newNum}
+                  oldNo={item.oldNum}
+                  isDeletable={true}
+                  onDelete={() => this.props.onDelete(index)}
+                  onClick={() => {
+                    this.setState({ activeSong: item, activeIndex: index });
+                    this.toggleModal();
+                  }}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+        <br />
+        <h4>Mundari</h4>
+        <br />
+        <div style={{ width: "100%", display: "flex", flexWrap: "wrap" }}>
+          {_.map(this.props.songMundari, (item, index) => (
+            <div>
+              <div style={{ width: 250 }}>
+                <SongCard
+                  hindi={item.hindi}
+                  songName={item.songName}
+                  newNo={item.newNum}
+                  oldNo={item.oldNum}
+                  isDeletable={true}
+                  onDelete={() => this.props.onDelete(index)}
+                  onClick={() => {
+                    this.setState({ activeSong: item, activeIndex: index });
+                    this.toggleModal();
+                  }}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+        <br />
+        <h4>Bhojpuri</h4>
+        <br />
+        <div style={{ width: "100%", display: "flex", flexWrap: "wrap" }}>
+          {_.map(this.props.songBhojpuri, (item, index) => (
+            <div>
+              <div style={{ width: 250 }}>
+                <SongCard
+                  hindi={item.hindi}
+                  songName={item.songName}
+                  newNo={item.newNum}
+                  oldNo={item.oldNum}
+                  isDeletable={true}
+                  onDelete={() => this.props.onDelete(index)}
+                  onClick={() => {
+                    this.setState({ activeSong: item, activeIndex: index });
+                    this.toggleModal();
+                  }}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+        <br />
+        <h4>KURUKH</h4>
+        <br />
+        <div style={{ width: "100%", display: "flex", flexWrap: "wrap" }}>
+          {_.map(this.props.songKurukh, (item, index) => (
+            <div>
+              <div style={{ width: 250 }}>
+                <SongCard
+                  hindi={item.hindi}
+                  songName={item.songName}
+                  newNo={item.newNum}
+                  oldNo={item.oldNum}
+                  isDeletable={true}
+                  onDelete={() => this.props.onDelete(index)}
+                  onClick={() => {
+                    this.setState({ activeSong: item, activeIndex: index });
+                    this.toggleModal();
+                  }}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+        <br />
+        <h4>Santhali</h4>
+        <br />
+        <div style={{ width: "100%", display: "flex", flexWrap: "wrap" }}>
+          {_.map(this.props.songSanthaliHindi, (item, index) => (
+            <div>
+              <div style={{ width: 250 }}>
+                <SongCard
+                  hindi={item.hindi}
+                  songName={item.songName}
+                  newNo={item.newNum}
+                  oldNo={item.oldNum}
+                  isDeletable={true}
+                  onDelete={() => this.props.onDelete(index)}
+                  onClick={() => {
+                    this.setState({ activeSong: item, activeIndex: index });
+                    this.toggleModal();
+                  }}
+                />
+              </div>
             </div>
           ))}
         </div>
@@ -60,24 +173,45 @@ class SongListComponent extends Component {
         <h4>English</h4>
         <br />
         <div style={{ width: "100%", display: "flex", flexWrap: "wrap" }}>
-          {_.map(this.props.songList, (item, index) => (
+          {_.map(this.props.songEnglish, (item, index) => (
             <div>
-              {!item.hindi ? (
-                <div style={{ width: 250 }}>
-                  <SongCard
-                    hindi={item.hindi}
-                    songName={item.songName}
-                    newNo={item.newNum}
-                    oldNo={item.oldNum}
-                    isDeletable={true}
-                    onDelete={() => this.props.onDelete(index)}
-                    onClick={() => {
-                      this.setState({ activeSong: item, activeIndex: index });
-                      this.toggleModal();
-                    }}
-                  />
-                </div>
-              ) : null}
+              <div style={{ width: 250 }}>
+                <SongCard
+                  hindi={item.hindi}
+                  songName={item.songName}
+                  newNo={item.newNum}
+                  oldNo={item.oldNum}
+                  isDeletable={true}
+                  onDelete={() => this.props.onDelete(index)}
+                  onClick={() => {
+                    this.setState({ activeSong: item, activeIndex: index });
+                    this.toggleModal();
+                  }}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+        <br />
+        <h4>Santhali</h4>
+        <br />
+        <div style={{ width: "100%", display: "flex", flexWrap: "wrap" }}>
+          {_.map(this.props.songSanthaliEnglish, (item, index) => (
+            <div>
+              <div style={{ width: 250 }}>
+                <SongCard
+                  hindi={item.hindi}
+                  songName={item.songName}
+                  newNo={item.newNum}
+                  oldNo={item.oldNum}
+                  isDeletable={true}
+                  onDelete={() => this.props.onDelete(index)}
+                  onClick={() => {
+                    this.setState({ activeSong: item, activeIndex: index });
+                    this.toggleModal();
+                  }}
+                />
+              </div>
             </div>
           ))}
         </div>
@@ -99,7 +233,55 @@ class SongListComponent extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    songList: getSongs(state) || []
+    songList: getSongs(state) || [],
+    songHindi:
+      _.filter(
+        getSongs(state) || [],
+        (item, index) =>
+          item.hindi && (item.newNum && item.newNum.split(" ")[1] == undefined)
+      ) || [],
+    songSadri:
+      _.filter(
+        getSongs(state) || [],
+        (item, index) =>
+          item.hindi && (item.newNum && item.newNum.split(" ")[0] === "S")
+      ) || [],
+    songMundari:
+      _.filter(
+        getSongs(state) || [],
+        (item, index) =>
+          item.hindi && (item.newNum && item.newNum.split(" ")[0] === "M")
+      ) || [],
+    songKurukh:
+      _.filter(
+        getSongs(state) || [],
+        (item, index) =>
+          item.hindi && (item.newNum && item.newNum.split(" ")[0] === "K")
+      ) || [],
+    songBhojpuri:
+      _.filter(
+        getSongs(state) || [],
+        (item, index) =>
+          item.hindi && (item.newNum && item.newNum.split(" ")[0] === "B")
+      ) || [],
+    songSanthaliHindi:
+      _.filter(
+        getSongs(state) || [],
+        (item, index) =>
+          item.hindi && (item.newNum && item.newNum.split(" ")[0] === "Sa")
+      ) || [],
+    songSanthaliEnglish:
+      _.filter(
+        getSongs(state) || [],
+        (item, index) =>
+          !item.hindi && (item.newNum && item.newNum.split(" ")[0] === "Sa")
+      ) || [],
+    songEnglish:
+      _.filter(
+        getSongs(state) || [],
+        (item, index) =>
+          !item.hindi && (item.newNum && item.newNum.split(" ")[0] === "E")
+      ) || []
   };
 };
 const mapDispatchToProps = dispatch => {

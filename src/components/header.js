@@ -36,7 +36,7 @@ class Header extends Component {
           slug: "songList",
           type: "nav",
           path: "/songList",
-          isVisible: cookies.get("accessToken") ? true : false
+          isVisible: true
         },
         {
           name: "Login",

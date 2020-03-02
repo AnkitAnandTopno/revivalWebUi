@@ -1,8 +1,9 @@
 import axios from "axios";
 import _ from "lodash";
 
-const server = "http://revivalsong.org.in/server";
-// const server = "http://localhost/revival-songs-backend";
+// const server = "http://revivalsong.org.in/server";
+// const server = "http://3.1.206.106/server";
+const server = "http://localhost/revival-songs-backend";
 const urlMaker = api => {
   return `${server}/${api}/`;
 };

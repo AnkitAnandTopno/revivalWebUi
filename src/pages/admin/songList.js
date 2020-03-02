@@ -48,14 +48,16 @@ class SongList extends Component {
             flexWrap: "wrap"
           }}
         >
-          <div style={{ flex: 1 }}>
-            <HeaderText>
-              <b>Song List</b>
-            </HeaderText>
-            <br />
-            <NavLink to={"/addSongs"}>
-              <ButtonSolid fontSize={15}>Add Songs</ButtonSolid>
-            </NavLink>
+          <div style={{ flex: 2 }}>
+            <div style={{ position: "fixed" }}>
+              <HeaderText>
+                <b>Song List</b>
+              </HeaderText>
+              <br />
+              <NavLink to={"/addSongs"}>
+                <ButtonSolid fontSize={15}>Add Songs</ButtonSolid>
+              </NavLink>
+            </div>
           </div>
           <div
             style={{

@@ -127,9 +127,6 @@ class AdminHeader extends Component {
     if (sizes.deviceHeight < sizes.deviceWidth) {
       this.setState({ isMenuClose: false });
     }
-    if (!cookies.get("accessToken")) {
-      this.props.history.push("/");
-    }
   }
   toggle() {}
   renderForm() {
